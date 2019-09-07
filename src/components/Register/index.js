@@ -14,11 +14,29 @@ class Register extends Component {
         console.log(this.state)
     }
 
+    handleSubmit = async (e) => {
+        e.preventDefault();
+        const register = await fetch('http://localhost:9000/users/register', {
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify(this.state),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const parsedRegister = await register.json();
+        console.log(parsedRegister, '<---parsedRegister from Register route')
+
+        if (parsedRegister.status.message === 'User logged in') {
+            console.log('Looks good, logged in!')
+        }
+    }
+
     render() {
         return (
             <div>
                 Register:
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <label>
                         Username:
                     </label>
