@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 
 class Register extends Component {
     state = {
@@ -28,8 +29,14 @@ class Register extends Component {
         console.log(parsedRegister, '<---parsedRegister from Register route')
 
         if (parsedRegister.status.message === 'User logged in') {
-            console.log('Looks good, logged in!')
+            this.props.history.push({
+                pathname: '/users',
+                state: {
+                    username: this.state.username
+                }
+            });
         }
+        console.log(this.props, '<--this.props in ./register')
     }
 
     render() {
@@ -59,4 +66,4 @@ class Register extends Component {
 
 }
 
-export default Register;
+export default withRouter(Register);

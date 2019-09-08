@@ -25,6 +25,7 @@ class ProfileList extends Component {
                 }
             })
             const parsedResponse = await userResponse.json();
+            console.log(this.props.location, '<--this.props.location in ProfileList')
 
             return parsedResponse.data;
 
@@ -34,21 +35,12 @@ class ProfileList extends Component {
 
     }
 
-    // fullUserList =()=> this.allUsers.map(singleUser => {
-    //     return (
-    //         <div>
-    //             <li key={singleUser._id}>
-    //                 <div>{singleUser.username}</div>
-    //             </li>
-    //         </div>
-    //     )
-    // })
-
     render() {
         return (
                 this.state.allUsers.map(singleUser => 
                     <div>
                         <div>{singleUser.username}</div>
+                        <div>localhost3000{singleUser._id} </div>
 
                     </div>
                     )
