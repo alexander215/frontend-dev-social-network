@@ -8,6 +8,7 @@ const NavBar = () => {
             <a href='/users'>All Users</a>
               |  
             <a href='/logout'>Logout</a>
+            <hr/>
         </div>
     )
 }

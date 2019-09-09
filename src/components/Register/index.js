@@ -5,9 +5,7 @@ class Register extends Component {
     state = {
         username: '',
         password: '',
-        email: '',
-        user: null,
-        isLogged: false
+        email: ''
     }
 
     handleChange = (e) => {
@@ -19,27 +17,26 @@ class Register extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        const register = await fetch('http://localhost:9000/users/register', {
-            method: 'POST',
-            credentials: 'include',
-            body: JSON.stringify(this.state),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        const parsedRegister = await register.json();
-        console.log(parsedRegister, '<---parsedRegister from Register route')
+        const registerFunc = this.props.register(this.state);
+        console.log(this.state, "<--this.statein resgister")
+        console.log(registerFunc, "<--registerfunc in register")
+        console.log(registerFunc, "<--return parsed reg")
 
-        if (parsedRegister.status.message === 'User logged in') {
+        registerFunc.then((data) => {
+            console.log(data, "<finallyyyy!!!!!!")
+            console.log(this.props.history, "<--this.props.history in register")
+            // this.props.history.push('/users'),
             this.props.history.push({
-                pathname: '/users',
-                state: {
-                    username: this.state.username,
-                    user: parsedRegister.data,
-                    isLogged: true
-                }
-            });
-        }
+                    pathname: '/users',
+                    state: {
+                        username: this.state.username,
+                        user: registerFunc.data,
+                        isLogged: true
+                    }
+                });
+            
+        })
+
         console.log(this.props, '<--this.props in ./register')
         console.log(this.state, '<--this.state in register')
     }
