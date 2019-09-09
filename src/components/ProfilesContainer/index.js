@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ProfileList from '../ProfileList';
+import Register from '../Register';
 
 class ProfilesContainer extends Component {
     state = {
@@ -24,7 +25,7 @@ class ProfilesContainer extends Component {
     render(){
         return (
             <div>
-                <h1>Welcome {this.state.currentUser.username}</h1>
+                <h1>Welcome {Register.state.currentUser.username}</h1>
                 <h3>All Users:</h3>
                 <ProfileList />
             </div>

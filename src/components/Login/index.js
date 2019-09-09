@@ -16,6 +16,7 @@ class Login extends Component {
 
     handleSubmit = async(e) => {
         e.preventDefault();
+        console.log(JSON.stringify(this.state), "<--this.state in login submit")
         const login = await fetch('http://localhost:9000/users/login', {
             method: 'POST',
             credentials: 'include',
@@ -41,7 +42,7 @@ class Login extends Component {
                     <label>
                         Password:
                     </label>
-                    <input type="password" password="password" placeholder="Your password"onChange={this.handleChange} />
+                    <input type="password" name="password" placeholder="Your password"onChange={this.handleChange} />
                     <button type="submit">
                         Login
                     </button>

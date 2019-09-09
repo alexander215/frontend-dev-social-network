@@ -5,7 +5,9 @@ class Register extends Component {
     state = {
         username: '',
         password: '',
-        email: ''
+        email: '',
+        user: null,
+        isLogged: false
     }
 
     handleChange = (e) => {
@@ -32,11 +34,14 @@ class Register extends Component {
             this.props.history.push({
                 pathname: '/users',
                 state: {
-                    username: this.state.username
+                    username: this.state.username,
+                    user: parsedRegister.data,
+                    isLogged: true
                 }
             });
         }
         console.log(this.props, '<--this.props in ./register')
+        console.log(this.state, '<--this.state in register')
     }
 
     render() {
