@@ -7,6 +7,7 @@ import NavBar from '../NavBar';
 import * as ROUTES from '../../constants/routes';
 import Register from '../Register';
 import Profile from '../Profile';
+import CreateProject from '../CreateProject';
 
 const My404 = () => {
   return (
@@ -19,7 +20,11 @@ const My404 = () => {
 
 class App extends Component {
   state ={
-    user: null,
+    user: '' 
+    // {
+    //   // username:"bob"
+    // }
+    ,
     isLogged: false,
     loading: true
   }
@@ -50,15 +55,6 @@ class App extends Component {
   })
   return parsedRegister
 
-  // if (parsedRegister.status.message === 'User logged in') {
-  //     this.props.history.push({
-  //         pathname: '/users',
-  //         state: {
-  //             username: this.state.username,
-  //             user: parsedRegister.data,
-  //             isLogged: true
-  //         }
-  //     });
   }
   
 
@@ -66,7 +62,8 @@ class App extends Component {
     console.log(this.state.user, "<--this.state in index")
     return (
       <div>
-        <NavBar userInfo={this.state.user} state={this.state.user}/>
+        {/* <NavBar userInfo={this.state.user} state={this.state.user}/> */}
+        <NavBar userInfo={this.state.isLogged} />
     {/* {this.state.user ? <NavBar userInfo={this.state}/> : null } */}
         
         <Switch>
@@ -74,8 +71,9 @@ class App extends Component {
           <Route exact path={ROUTES.PROFILES_CONTAINER} render={(props) => <ProfilesContainer  user = { this.state.user} /> }/>
           
           {/* <Route exact path={ROUTES.PROFILES_CONTAINER} render=component= { ProfilesContainer } /> */}
-          <Route exact path={ROUTES.PROFILE} component={ Profile } />
+          <Route exact path={ROUTES.PROFILE} render={(props) => <Profile user={this.state.user} {...props}/>} />
           <Route exact path={ROUTES.REGISTER} render={(props) => <Register  {...props} register={this.register} />} />
+          <Route exact path={ROUTES.CREATE_PROJECT} render={(props) => <CreateProject {...props} user={this.state.user} /> } />
           <Route component={ My404 } />
         </Switch>
 

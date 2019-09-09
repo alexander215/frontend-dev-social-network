@@ -37,8 +37,8 @@ class Register extends Component {
             
         })
 
-        console.log(this.props, '<--this.props in ./register')
-        console.log(this.state, '<--this.state in register')
+        // console.log(this.props, '<--this.props in ./register')
+        // console.log(this.state, '<--this.state in register')
     }
 
     render() {

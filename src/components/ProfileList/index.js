@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as ROUTES from '../../constants/routes';
+import { Link } from 'react-router-dom'
 
 
 class ProfileList extends Component {
@@ -13,7 +14,7 @@ class ProfileList extends Component {
         this.setState({
             allUsers: userList
         })
-        console.log(this.state, "<-- this.state in Profile list")
+        // console.log(this.state, "<-- this.state in Profile list")
     }
 
     userList = async(data) => {
@@ -27,7 +28,7 @@ class ProfileList extends Component {
                 }
             })
             const parsedResponse = await userResponse.json();
-            console.log(this.props.location, '<--this.props.location in ProfileList')
+            // console.log(this.props.location, '<--this.props.location in ProfileList')
 
             return parsedResponse.data;
 
@@ -41,8 +42,8 @@ class ProfileList extends Component {
         return (
                 this.state.allUsers.map(singleUser => 
                     <div>
-                        <div>{singleUser.username}</div>
-                        <div>localhost3000{singleUser._id} </div>
+                        <Link to={`/profile/${singleUser._id}`}><div>{singleUser.username}</div></Link>
+                        <div>Email: {singleUser.email}</div>
 
                     </div>
                     )
