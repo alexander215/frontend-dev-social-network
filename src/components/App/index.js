@@ -6,6 +6,7 @@ import ProfilesContainer from '../ProfilesContainer';
 import NavBar from '../NavBar';
 import * as ROUTES from '../../constants/routes';
 import Register from '../Register';
+import Profile from '../Profile';
 
 const My404 = () => {
   return (
@@ -22,6 +23,12 @@ class App extends Component {
     isLogged: false,
     loading: true
   }
+
+  componentDidMount() {
+    // console.log(this.state, "<--main component did mountttt")
+  }
+  
+
 
   register = async (data) => {
     console.log(data, "<--data, and hitting register function in index")
@@ -56,16 +63,18 @@ class App extends Component {
   
 
   render(){
-    console.log(this.state, "<--this.state in index")
+    console.log(this.state.user, "<--this.state in index")
     return (
       <div>
-        <NavBar />
+        <NavBar userInfo={this.state.user} state={this.state.user}/>
+    {/* {this.state.user ? <NavBar userInfo={this.state}/> : null } */}
         
-        {this.state.isLogged ? <NavBar /> : null}
         <Switch>
           <Route exact path={ROUTES.LANDING_PAGE} component={ LandingPage } />
-          <Route exact path={ROUTES.PROFILES_CONTAINER} component= { ProfilesContainer } />
+          <Route exact path={ROUTES.PROFILES_CONTAINER} render={(props) => <ProfilesContainer  user = { this.state.user} /> }/>
+          
           {/* <Route exact path={ROUTES.PROFILES_CONTAINER} render=component= { ProfilesContainer } /> */}
+          <Route exact path={ROUTES.PROFILE} component={ Profile } />
           <Route exact path={ROUTES.REGISTER} render={(props) => <Register  {...props} register={this.register} />} />
           <Route component={ My404 } />
         </Switch>
