@@ -15,7 +15,7 @@ class ProfilesContainer extends Component {
         console.log(this.props, '<---- this.props in ProfilesContainer')
         return (
             <div>
-                { this.props.user ? <WelcomeLogged /> : <WelcomeUnlogged />} 
+                { this.props.user ? <h1>Welcome {this.props.user.username}</h1> : <h1>Welcome Visitor</h1> } 
                 
                 <h3>All Users:</h3>
                 <ProfileList />
@@ -24,16 +24,6 @@ class ProfilesContainer extends Component {
     }
 }
 
-const WelcomeLogged = ()=>  {
-    return(
-        <h1>Welcome {this.props.user.username}</h1>
-    )
-}
-const WelcomeUnlogged = ()=>  {
-    return(
 
-        <h1>Welcome Visitor</h1>
-    )
-}
 
 export default ProfilesContainer;

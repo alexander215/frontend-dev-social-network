@@ -14,7 +14,6 @@ class CreateProject extends Component {
     }
 
     componentDidMount () {
-        console.log(this.props.user, "<-- this.props in CreateProject")
         this.setState({
             user: this.props.user
         })
@@ -22,26 +21,34 @@ class CreateProject extends Component {
 
     handleChange = (e) => {
         console.log(this.state)
+        this.setState({
+            [e.currentTarget.name]: e.currentTarget.value
+        })
+    }
 
-
+    handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log('hitting handleclicke');
     }
 
     render() {
         return(
             <div>
-                <form>
+                <h1>Create Project:</h1>
+                <form onSubmit={this.handleSubmit}>
                     <label>
                         Title:
                     </label>
-                    <input type='text' name='title' placeholder='What is the title?' />
+                    <input type='text' name='title' placeholder='What is the title?' onChange={this.handleChange}/>
                     <label>
                         Description:
                     </label>
-                    <input type='text' name='description' placeholder='Describe the project' />
+                    <input type='text' name='description' placeholder='Describe the project' onChange={this.handleChange}/>
                     <label>
                         Link:
                     </label>
-                    <input type='text' name='link' placeholder='Link to project' />
+                    <input type='text' name='link' placeholder='Link to project' onChange={this.handleChange}/>
+                <button type='submit'>Submit</button>
                 </form>
             </div>
         )

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as ROUTES from '../../constants/routes';
+import { Link } from 'react-router-dom'
 
 
 // class NavBar extends Component {
@@ -36,13 +37,15 @@ const NavBar = ({userInfo}) => (
 const NavBarLogged = () => {
   return(
     <div>
-        <a href={ROUTES.LANDING_PAGE}>Home</a>
+        <Link to={ROUTES.LANDING_PAGE}>Home</Link>
           |  
-        <a href={ROUTES.PROFILE}>Profile</a>
+        <Link to={ROUTES.PROFILE}>Profile</Link>
           |  
-        <a href={ROUTES.PROFILES_CONTAINER}>All Users</a>
+        <Link to={ROUTES.CREATE_PROJECT}>Create Project</Link>
           |  
-        <a href='/logout'>Logout</a>
+        <Link to={ROUTES.PROFILES_CONTAINER}>All Users</Link>
+          |  
+        <Link to='/logout'>Logout</Link>
         <hr/>
     </div>
   )
@@ -51,11 +54,11 @@ const NavBarLogged = () => {
 const NavBarNotLogged = () => {
   return(
     <div>
-        <a href={ROUTES.LANDING_PAGE}>Home</a>
+        <Link to={ROUTES.LANDING_PAGE}>Home</Link>
           |  
-        <a href={ROUTES.PROFILES_CONTAINER}>All Users</a>
+        <Link to={ROUTES.PROFILES_CONTAINER}>All Users</Link>
           |  
-        <a href={ROUTES.REGISTER}>Login</a>
+        <Link to={ROUTES.REGISTER}>Login</Link>
         <hr/>
     </div>
   )
