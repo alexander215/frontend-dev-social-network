@@ -34,8 +34,9 @@ class CreateProject extends Component {
         this.setState({
             user: createProject
         })
-        console.log(this.state.user)
+        // console.log(this.state.user._id, "<this.state.user._id")
         // console.log(JSON.stringify(this.state), '<--e in create project')
+        this.props.history.push(`/profile/${this.state.user.data.newProject.created_by}`);
         
     }
 
@@ -52,12 +53,8 @@ class CreateProject extends Component {
         console.log(createResponse, '<--create response')
         const parsedResponse = await createResponse.json();
         console.log(parsedResponse, '<--parsedresonse')
-        this.props.history.push();
-        // return parsedResponse;
-
-
-
-        }catch(err){
+        return parsedResponse;
+        } catch(err){
             console.log(err);
         }
 

@@ -109,7 +109,7 @@ class App extends Component {
             <Route exact path={ROUTES.LANDING_PAGE} component={ LandingPage } />
             <Route exact path={ROUTES.LOGIN} render={(props) => <Login {...props} login={this.login} />}/>
             <Route exact path={ROUTES.PROFILES_CONTAINER} render={(props) => <ProfilesContainer  user = { this.state.user} /> }/>
-            <Route exact path={ROUTES.PROFILE} render={(props) => <Profile user={this.state.user} {...props}/>} />
+            <Route exact path={ROUTES.PROFILE} render={(props) => <Profile user={this.state} {...props}/>} />
             <Route exact path={ROUTES.REGISTER} render={(props) => <Register  {...props} register={this.register} />} />
             <Route exact path={ROUTES.CREATE_PROJECT} render={(props) => <CreateProject {...props} user={this.state.user} /> } />
             <Route exact path={ROUTES.PROFILES_CONTAINER} render={(props) => <ProfilesContainer  user = { this.state.user} /> }/>
