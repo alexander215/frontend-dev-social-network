@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import './style.css';
 import LandingPage from '../LandingPage';
 import ProfilesContainer from '../ProfilesContainer';
@@ -8,6 +8,7 @@ import * as ROUTES from '../../constants/routes';
 import Register from '../Register';
 import Profile from '../Profile';
 import CreateProject from '../CreateProject';
+import Login from '../Login';
 
 const My404 = () => {
   return (
@@ -20,19 +21,33 @@ const My404 = () => {
 
 class App extends Component {
   state ={
-    user: '' 
-    // {
-    //   // username:"bob"
-    // }
-    ,
+    user: '',
     isLogged: false,
     loading: true
   }
 
   componentDidMount() {
-    // console.log(this.state, "<--main component did mountttt")
+    console.log(this.state, "<--main component did mountttt")
   }
-  
+  componentWillUnmount(){
+    console.log('comonent did unmount')
+  }
+
+  logout = async() => {
+    fetch('http://localhost:9000/users/logout', {
+      method: 'GET',
+      credentials: 'include',
+    })
+    .then(
+      this.setState({
+        user: '',
+        isLogged: false
+      })
+    )
+    .then(
+      this.props.history.push('/')
+    )
+  }
 
 
   register = async (data) => {
@@ -62,24 +77,21 @@ class App extends Component {
     console.log(this.state.user, "<--this.state in index")
     return (
       <div>
-        {/* <NavBar userInfo={this.state.user} state={this.state.user}/> */}
-        <NavBar userInfo={this.state.isLogged} />
-    {/* {this.state.user ? <NavBar userInfo={this.state}/> : null } */}
-        
-        <Switch>
-          <Route exact path={ROUTES.LANDING_PAGE} component={ LandingPage } />
-          <Route exact path={ROUTES.PROFILES_CONTAINER} render={(props) => <ProfilesContainer  user = { this.state.user} /> }/>
+        {/* <NavBar userInfo={this.state.isLogged} /> */}
+        <NavBar userInfo={this.state.isLogged} user={this.state.user} logout={this.logout}/>
           
-          {/* <Route exact path={ROUTES.PROFILES_CONTAINER} render=component= { ProfilesContainer } /> */}
-          <Route exact path={ROUTES.PROFILE} render={(props) => <Profile user={this.state.user} {...props}/>} />
-          <Route exact path={ROUTES.REGISTER} render={(props) => <Register  {...props} register={this.register} />} />
-          <Route exact path={ROUTES.CREATE_PROJECT} render={(props) => <CreateProject {...props} user={this.state.user} /> } />
-          <Route component={ My404 } />
-        </Switch>
-
+          <Switch>
+            <Route exact path={ROUTES.LANDING_PAGE} component={ LandingPage } />
+            <Route exact path={ROUTES.LOGIN} component={ Login } />
+            <Route exact path={ROUTES.PROFILES_CONTAINER} render={(props) => <ProfilesContainer  user = { this.state.user} /> }/>
+            <Route exact path={ROUTES.PROFILE} render={(props) => <Profile user={this.state.user} {...props}/>} />
+            <Route exact path={ROUTES.REGISTER} render={(props) => <Register  {...props} register={this.register} />} />
+            <Route exact path={ROUTES.CREATE_PROJECT} render={(props) => <CreateProject {...props} user={this.state.user} /> } />
+            <Route component={ My404 } />
+          </Switch>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

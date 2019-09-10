@@ -1,51 +1,26 @@
 import React, { Component } from 'react';
 import * as ROUTES from '../../constants/routes';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
-
-// class NavBar extends Component {
-//   state= {
-//     user: false
-
-//   }
-//   componentDidUpdate = async(userInfo, state) => {
-//     console.log(state, "<---state in navbar props")
-//     console.log(userInfo, "<--component mountuserinfo")
-//     console.log(this.state, "<--navbar state")
-    
-    
-//   }
-
-//   render(){
-    
-//     return(
-//         <div>
-//           {this.state.user ? <NavBarLogged /> : <NavBarNotLogged /> }
-//         </div>
-//     )
-
-//   }
-// }
-
-const NavBar = ({userInfo}) => (
+const NavBar = ({userInfo, user, logout}) => (
   <div>
-          {userInfo ? <NavBarLogged /> : <NavBarNotLogged /> }
+          {userInfo ? <NavBarLogged user={user} logout={logout}/> : <NavBarNotLogged /> }
   </div>
 )
 
 
-const NavBarLogged = () => {
+const NavBarLogged = ({user, logout}) => {
   return(
     <div>
         <Link to={ROUTES.LANDING_PAGE}>Home</Link>
           |  
-        <Link to={ROUTES.PROFILE}>Profile</Link>
+        <Link to={`/profile/${user._id}`}>Profile</Link>
           |  
         <Link to={ROUTES.CREATE_PROJECT}>Create Project</Link>
           |  
         <Link to={ROUTES.PROFILES_CONTAINER}>All Users</Link>
           |  
-        <Link to='/logout'>Logout</Link>
+        <button onClick={() => logout()}>Logout</button>
         <hr/>
     </div>
   )
@@ -58,11 +33,10 @@ const NavBarNotLogged = () => {
           |  
         <Link to={ROUTES.PROFILES_CONTAINER}>All Users</Link>
           |  
-        <Link to={ROUTES.REGISTER}>Login</Link>
+        <Link to={ROUTES.LOGIN}>Login</Link>
         <hr/>
     </div>
   )
-
 }
 
-export default NavBar;
+export default withRouter(NavBar);

@@ -7,6 +7,12 @@ import * as ROUTES from '../../constants/routes';
 
 
 class LandingPage extends Component {
+    componentDidMount (){
+        console.log('landing page mounted')
+    }
+    componentWillUnmount() {
+        console.group('landing page will unmount')
+    }
     render(){
         return(
             <div>
