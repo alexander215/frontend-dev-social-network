@@ -71,6 +71,29 @@ class App extends Component {
   return parsedRegister
 
   }
+
+  login = async(data) => { 
+  console.log(JSON.stringify(data), "<--this.data in login submit")
+        const login = await fetch('http://localhost:9000/users/login', {
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const parsedLogin = await login.json();
+        console.log(parsedLogin.data, "<--parsedLogin from login")
+        if (parsedLogin.status.message === "User logged in") {
+            console.log('logged in!!!!')
+            this.setState({
+              user: parsedLogin.data,
+              loading: false,
+              isLogged: true
+            })
+        }
+        return parsedLogin
+      }
   
 
   render(){
@@ -82,7 +105,7 @@ class App extends Component {
           
           <Switch>
             <Route exact path={ROUTES.LANDING_PAGE} component={ LandingPage } />
-            <Route exact path={ROUTES.LOGIN} component={ Login } />
+            <Route exact path={ROUTES.LOGIN} render={(props) => <Login {...props} login={this.login} />}/>
             <Route exact path={ROUTES.PROFILES_CONTAINER} render={(props) => <ProfilesContainer  user = { this.state.user} /> }/>
             <Route exact path={ROUTES.PROFILE} render={(props) => <Profile user={this.state.user} {...props}/>} />
             <Route exact path={ROUTES.REGISTER} render={(props) => <Register  {...props} register={this.register} />} />
