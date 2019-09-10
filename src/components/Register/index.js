@@ -18,14 +18,14 @@ class Register extends Component {
     handleSubmit = async (e) => {
         e.preventDefault();
         const registerFunc = this.props.register(this.state);
-        console.log(this.state, "<--this.statein resgister")
-        console.log(registerFunc, "<--registerfunc in register")
-        console.log(registerFunc, "<--return parsed reg")
+        // console.log(this.state, "<--this.statein resgister")
+        // console.log(registerFunc, "<--registerfunc in register")
+        // console.log(registerFunc, "<--return parsed reg")
 
         registerFunc.then((data) => {
-            console.log(data, "<finallyyyy!!!!!!")
-            console.log(this.props.history, "<--this.props.history in register")
-            // this.props.history.push('/users'),
+            // console.log(data, "<finallyyyy!!!!!!")
+            // console.log(this.props.history, "<--this.props.history in register")
+            // // this.props.history.push('/users'),
             this.props.history.push({
                     pathname: '/users',
                     state: {
@@ -36,9 +36,6 @@ class Register extends Component {
                 });
             
         })
-
-        // console.log(this.props, '<--this.props in ./register')
-        // console.log(this.state, '<--this.state in register')
     }
 
     render() {

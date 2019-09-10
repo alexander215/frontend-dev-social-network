@@ -28,14 +28,11 @@ class CreateProject extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('hitting handleclicke');
         const createProject = await this.newProj();
-        console.log(createProject, "<--create project in handle submit")
         this.setState({
             user: createProject
         })
-        console.log(this.state.user)
-        // console.log(JSON.stringify(this.state), '<--e in create project')
+        this.props.history.push(`/profile/${this.state.user.data.newProject.created_by}`);
         
     }
 
@@ -49,15 +46,9 @@ class CreateProject extends Component {
                 'Content-Type': 'application/json'
             }
         })
-        console.log(createResponse, '<--create response')
         const parsedResponse = await createResponse.json();
-        console.log(parsedResponse, '<--parsedresonse')
-        this.props.history.push();
-        // return parsedResponse;
-
-
-
-        }catch(err){
+        return parsedResponse;
+        } catch(err){
             console.log(err);
         }
 
