@@ -7,7 +7,7 @@ class Profile extends Component {
         }
     }
     async componentDidMount () {
-        const response = await fetch(`http://localhost:9000/users/${this.props.match.params.id}`)
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${this.props.match.params.id}`)
         const user = await response.json()
         console.log(user, 'THIS IS YOUR FOUND USEWR!!!!!')
         this.setState({
@@ -16,7 +16,7 @@ class Profile extends Component {
     }
 
     handleSubmit = async (id) => {
-        const deleteProj = await fetch ('http://localhost:9000/projects/' + id, {
+        const deleteProj = await fetch (`${process.env.REACT_APP_BACKEND_URL}/projects/` + id, {
             method: 'DELETE',
             credentials: 'include'
         })

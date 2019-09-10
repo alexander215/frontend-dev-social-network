@@ -38,7 +38,7 @@ class CreateProject extends Component {
 
     newProj = async(e) => {
         try{
-            const createResponse = await fetch('http://localhost:9000/projects/create', {
+            const createResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/projects/create`, {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify(this.state),

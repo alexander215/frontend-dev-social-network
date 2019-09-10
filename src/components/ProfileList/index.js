@@ -19,7 +19,7 @@ class ProfileList extends Component {
 
     userList = async(data) => {
         try{
-            const userResponse = await fetch('http://localhost:9000/users/', {
+            const userResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/`, {
                 method: 'GET',
                 credentials: 'include',
                 body: data,

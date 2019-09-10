@@ -18,7 +18,7 @@ class DeleteList extends Component {
 
     userList = async(data) => {
         try{
-            const userResponse = await fetch('http://localhost:9000/users/', {
+            const userResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/`, {
                 method: 'GET',
                 credentials: 'include',
                 body: data,
@@ -34,7 +34,7 @@ class DeleteList extends Component {
     }
 
     handleSubmit = async(id) => {
-        const deleteReq = await fetch('http://localhost:9000/users/' + id, {
+        const deleteReq = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/` + id, {
             method: 'DELETE',
             credentials: 'include'
         } )

@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   logout = async() => {
-    fetch('http://localhost:9000/users/logout', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/users/logout`, {
       method: 'GET',
       credentials: 'include',
     })
@@ -53,7 +53,7 @@ class App extends Component {
 
   register = async (data) => {
     console.log(data, "<--data, and hitting register function in index")
-    const register = await fetch('http://localhost:9000/users/register', {
+    const register = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/register`, {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify(data),
@@ -75,7 +75,7 @@ class App extends Component {
 
   login = async(data) => { 
   console.log(JSON.stringify(data), "<--this.data in login submit")
-        const login = await fetch('http://localhost:9000/users/login', {
+        const login = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify(data),
