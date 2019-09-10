@@ -15,18 +15,37 @@ class Login extends Component {
     }
 
     handleSubmit = async(e) => {
+        console.log('hit login')
         e.preventDefault();
-        console.log(JSON.stringify(this.state), "<--this.state in login submit")
-        const login = await fetch('http://localhost:9000/users/login', {
-            method: 'POST',
-            credentials: 'include',
-            body: JSON.stringify(this.state),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        const loginFunc = this.props.login(this.state);
+        console.log(this.state, '<--this.state in login')
+        console.log(loginFunc, "<--loginfunc in login")
+
+        loginFunc.then((data) => {
+            console.log(data, "<--date in login")
+            this.props.history.push({
+                pathname: '/users',
+                state: {
+                    username: this.state.username,
+                    user: loginFunc.data,
+                    isLogged: true
+                }
+            })
         })
-        const parsedLogin = await login.json();
-        console.log(parsedLogin, "<--parsedLogin from login")
+        // console.log(JSON.stringify(this.state), "<--this.state in login submit")
+        // const login = await fetch('http://localhost:9000/users/login', {
+        //     method: 'POST',
+        //     credentials: 'include',
+        //     body: JSON.stringify(this.state),
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // })
+        // const parsedLogin = await login.json();
+        // console.log(parsedLogin.status.message, "<--parsedLogin from login")
+        // if (parsedLogin.status.message === "User logged in") {
+        //     console.log('logged in!!!!')
+        // }
     }
 
     render(){
