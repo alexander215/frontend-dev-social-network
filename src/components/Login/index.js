@@ -32,20 +32,6 @@ class Login extends Component {
                 }
             })
         })
-        // console.log(JSON.stringify(this.state), "<--this.state in login submit")
-        // const login = await fetch('http://localhost:9000/users/login', {
-        //     method: 'POST',
-        //     credentials: 'include',
-        //     body: JSON.stringify(this.state),
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // })
-        // const parsedLogin = await login.json();
-        // console.log(parsedLogin.status.message, "<--parsedLogin from login")
-        // if (parsedLogin.status.message === "User logged in") {
-        //     console.log('logged in!!!!')
-        // }
     }
 
     render(){

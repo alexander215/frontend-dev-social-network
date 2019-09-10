@@ -9,6 +9,7 @@ import Register from '../Register';
 import Profile from '../Profile';
 import CreateProject from '../CreateProject';
 import Login from '../Login';
+import DeleteList from '../DeleteList';
 
 const My404 = () => {
   return (
@@ -94,7 +95,8 @@ class App extends Component {
         }
         return parsedLogin
       }
-  
+
+     
 
   render(){
     console.log(this.state.user, "<--this.state in index")
@@ -110,6 +112,9 @@ class App extends Component {
             <Route exact path={ROUTES.PROFILE} render={(props) => <Profile user={this.state.user} {...props}/>} />
             <Route exact path={ROUTES.REGISTER} render={(props) => <Register  {...props} register={this.register} />} />
             <Route exact path={ROUTES.CREATE_PROJECT} render={(props) => <CreateProject {...props} user={this.state.user} /> } />
+            <Route exact path={ROUTES.PROFILES_CONTAINER} render={(props) => <ProfilesContainer  user = { this.state.user} /> }/>
+            <Route exact path={ROUTES.DELETE} render={(props) => <DeleteList {...props} delete={this.deleteUser} /> } />
+
             <Route component={ My404 } />
           </Switch>
       </div>
