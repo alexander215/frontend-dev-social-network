@@ -5,7 +5,19 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #004c56;
+  color: #E8E9EB;
 }
+
+a {
+  color: #F06543;
+}
+a:hover {
+  color: white;
+}
+/* a:visited {
+  color: #F09D51;
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

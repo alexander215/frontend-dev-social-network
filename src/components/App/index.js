@@ -14,7 +14,7 @@ import DeleteList from '../DeleteList';
 const My404 = () => {
   return (
     <div>
-      <h2>Woops, that looks like a wrong turn.</h2>
+      <h2>Whoops, that looks like a wrong turn.</h2>
       <a href='/'>Want to head home?</a>
     </div>
   )
