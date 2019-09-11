@@ -18,6 +18,9 @@ a:hover {
 /* a:visited {
   color: #F09D51;
 } */
+.link {
+  border: solid;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

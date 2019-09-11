@@ -4,6 +4,7 @@ import Login from '../Login';
 import Register from '../Register';
 import ProfileList from '../ProfileList';
 import * as ROUTES from '../../constants/routes';
+import { Link } from 'react-router-dom'
 
 
 class LandingPage extends Component {
@@ -16,15 +17,15 @@ class LandingPage extends Component {
     render(){
         return(
             <div>
-                <h1>Welcome to pbp!</h1>
+                <h1>People Behind the Programs</h1>
                 <div>
                     Need an account?
-                    <a href={ROUTES.REGISTER} >REGISTER HERE</a>
+                    <Link to={ROUTES.REGISTER}>REGISTER HEeeeRE</Link>
                 </div>
                     <br/>
                 <div>
                     Want to skip right to the profiles?
-                    <a href={ROUTES.PROFILES_CONTAINER}>Head this way...</a>
+                    <Link class="link" to={ROUTES.PROFILES_CONTAINER}>Head this way...</Link>
                 </div>
             </div>
             )
